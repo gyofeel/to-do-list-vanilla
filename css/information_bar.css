@@ -1,0 +1,38 @@
+#inform{
+    width:100%;
+    height:50px;
+    background-color:rgb(48, 60, 73);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo, .user{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.logo{
+    color:white;
+}
+
+.date{
+    font-weight: bold;
+    color:white;
+}
+.user{
+    width:35px;
+    height:35px;
+    background-color:yellow;
+    border-radius: 20px;
+    position: relative;
+}
+.username{
+    position: absolute;
+    transform:translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    font-size:12px;
+    text-align:center;
+}

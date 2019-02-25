@@ -1,0 +1,9 @@
+#content{
+    background-color:rgb(139, 238, 221);
+    width:100%;
+    height:100%;
+    padding-top:40px;
+    display:flex;
+    flex-flow:row nowrap;
+    overflow-x:scroll;
+}

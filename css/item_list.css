@@ -1,0 +1,96 @@
+.list{
+    width:90%;
+    padding-bottom:20px;
+}
+
+.item{
+    /* background-color:yellow; */
+    width:100%;
+    height:50px;
+    padding:10px;
+    padding-top:15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+.item-form{
+    width:100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: center;
+}
+.checkbox{
+    display:none;
+}
+.checkbox + label{
+    display:inline-block;
+    position: relative;
+    width:20px;
+    height:20px;
+    border:1px solid gray;
+    border-radius: 10px;
+    cursor:pointer;
+}
+.checkbox + label::before{
+    content: "";
+    width:14px;
+    height:14px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    border-radius:7px;
+    display:none;
+    background-color:coral;
+}
+.checkbox:checked + label::before{
+    display:block;
+}
+.item-content{
+    display: inline-block;
+    position: relative;
+    /* min-width:20%;
+    max-width:85%; ~~later~~ */
+    width:75%;
+    height:20px;
+    margin-left:5px;
+    font-size:15px;
+    border:0;
+}
+.item-content:focus{
+    outline:none;
+}
+
+.item-delete{
+    color:red;
+    padding:5px;
+    padding-right: 0px;
+    font-size:12px;
+    cursor:pointer;
+    display:none;
+}
+.guide-item{
+    width:100%;
+    height:50px;
+    background-color:yellow;
+    display:none;
+}
+.add-item{
+    position: relative;
+    width:100%;
+    height:40px;
+    background-color:black;
+    margin-top:10px;
+    border-radius:5px;
+    opacity:0.2;
+    cursor:pointer;
+}
+.add-item span, #add-card span{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width:200px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    color:white;
+}
