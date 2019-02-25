@@ -16,15 +16,14 @@ let onAddCard = (e)=>{
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
 let onAddItem = (e)=>{
-    let targetCardId = e.target.id?e.target.id:e.target.parentElement.id.split('-')[1];
+    let targetCardId = e.target.id?e.target.id.split('-')[1]:e.target.parentElement.id.split('-')[1];
     let newItemData = createItemData();
+    console.log(targetCardId)
     let divList = document.getElementById(`dl-${targetCardId}`);
     let element = createItemElement(newItemData);
-    setTimeout(()=>{
-        divList.appendChild(element);
-        document.getElementById(`ic-${newItemData.item_id}`).focus();
-    }, 700)
-    
+    console.log(divList);
+    divList.appendChild(element);
+    document.getElementById(`ic-${newItemData.item_id}`).focus();
     console.log(targetCardId)
     let targetIdx = data.card.findIndex((o)=>o.card_id===targetCardId);
     data.card[targetIdx].list.push(newItemData);
