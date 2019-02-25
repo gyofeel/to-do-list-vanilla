@@ -9,11 +9,29 @@
 .card-title-text{
     font-size:17px;
     font-weight:bold;
-    width:100%;
+    width:75%;
     height:25px;
 }
 .card-title-text:focus{
     outline: none;
+}
+
+.card-delete{
+    position: absolute;
+    top:10px;
+    right:10px;
+    font-size:10px;
+    color:red;
+    cursor:pointer;
+    /* display:none; */
+    padding:3px;
+    opacity:1;
+    transition:0.5s;
+}
+
+.card-delete.hover{
+    display:inline-block;
+    opacity:1;
 }
 
 #div-card{

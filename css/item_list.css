@@ -40,11 +40,14 @@
     top:50%;
     left:50%;
     border-radius:7px;
-    display:none;
+    /* display:none; */
+    opacity:0;
     background-color:coral;
+    transition:0.5s;
 }
 .checkbox:checked + label::before{
-    display:block;
+    opacity:1;
+    /* display:block; */
 }
 .item-content{
     display: inline-block;
@@ -68,7 +71,14 @@
     font-size:12px;
     cursor:pointer;
     display:none;
+    opacity:0;
+    transition:0.5s;
 }
+.item-delete.hover{
+    display:inline-block;
+    opacity:1;
+}
+
 .guide-item{
     width:100%;
     height:50px;
