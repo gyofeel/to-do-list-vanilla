@@ -12,6 +12,7 @@ let onAddCard = (e)=>{
     document.getElementById(`ctc-${newCardData.card_id}`).focus();
     data.card.push(newCardData);
     document.getElementById(`ai-${newCardData.card_id}`).addEventListener('click', onAddItem);
+    document.getElementById(`ctc-${newCardData.card_id}`).addEventListener('blur', onUpdateCardTitle);
 }
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
@@ -34,16 +35,17 @@ Array.from(addItem).forEach((el)=>{
     el.addEventListener('click', onAddItem);
 })
 
-
 let onUpdateCardTitle = (e)=>{
     console.log(e.target.id);
     console.log(e.target.value);
     const targetCardId = e.target.id.split('-')[1];
     const targetTitleValue = e.target.value;
-    let targetIdx = data.card.findIndex((o)=>{o.card_title===targetCardId});
-    console.log(targetIdx)
+    let targetIdx = data.card.findIndex((o)=>o.card_id===targetCardId);
+    data.card[targetIdx].card_title = targetTitleValue;
+    console.log(data.card)
 }
 let cardTitleText = document.getElementsByClassName('card-title-text');
 Array.from(cardTitleText).forEach((el)=>{
     el.addEventListener('blur', onUpdateCardTitle);
 })
+
