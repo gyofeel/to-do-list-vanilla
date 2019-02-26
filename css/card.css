@@ -23,9 +23,9 @@
     font-size:10px;
     color:red;
     cursor:pointer;
-    /* display:none; */
+    display:none;
     padding:3px;
-    opacity:1;
+    opacity:0;
     transition:0.5s;
 }
 
