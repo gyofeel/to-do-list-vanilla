@@ -1,7 +1,7 @@
 let initList = (list, cardId)=>{
     let result = list.reduce((acc, el)=>{
         let value = `
-        <div class="item">
+        <div class="item" id="i-${cardId}-${el.item_id}">
             <form class="item-form">
                 <input class="checkbox" id="${cardId}-${el.item_id}" type="checkbox" ${el.item_complete?"checked":''}/>
                 <label for="${cardId}-${el.item_id}"></label>
@@ -18,6 +18,7 @@ let initList = (list, cardId)=>{
 let createItemElement = (itemData, cardId)=>{
     let item = document.createElement('div');
     item.setAttribute('class', 'item');
+    item.setAttribute('id', `i-${cardId}-${itemData.item_id}`);
     let element = `
     <form class="item-form">
         <input class="checkbox" id="${cardId}-${itemData.item_id}" type="checkbox" ${itemData.item_complete?"checked":''}/>
