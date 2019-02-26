@@ -13,6 +13,8 @@ let onAddCard = (e)=>{
     data.card.push(newCardData);
     document.getElementById(`ai-${newCardData.card_id}`).addEventListener('click', onAddItem);
     document.getElementById(`ctc-${newCardData.card_id}`).addEventListener('blur', onUpdateCardTitle);
+    document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseover', onShowDeleteCard);
+    document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseout', onHideDeleteCard);
 }
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
@@ -28,6 +30,8 @@ let onAddItem = (e)=>{
     document.getElementById(`tn-${targetCardId}`).textContent=++data.card[targetIdx].total_num;
     document.getElementById(`ic-${targetCardId}-${newItemData.item_id}`).addEventListener('blur', onUpdateItemContent);
     document.getElementById(`${targetCardId}-${newItemData.item_id}`).addEventListener('change', onUpdateItemComplete);
+    document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseover', onShowDeleteItem);
+    document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseout', onHideDeleteItem);
 }
 let addItem = document.getElementsByClassName('add-item');
 Array.from(addItem).forEach((el)=>{
@@ -61,9 +65,58 @@ let onUpdateItemComplete = (e)=>{
     const targetCardId = splitTarget[0];
     const targetItemId = splitTarget[1];
     updateItemData(targetCardId, targetItemId, 1);
-    console.log(data.card)
+    document.getElementById(`cn-${targetCardId}`).textContent = data.card[data.card.findIndex((o)=>o.card_id===targetCardId)].complete_num;
 }
 let checkbox = document.getElementsByClassName('checkbox');
 Array.from(checkbox).forEach((el)=>{
     el.addEventListener('change', onUpdateItemComplete);
+})
+
+
+let onShowDeleteCard = (e)=>{
+    if(e.target.tagName === 'DIV'){
+        e.target.children[1].setAttribute('class', 'card-delete mouseover');
+    } else if(e.target.tagName === 'INPUT'){
+        e.target.nextSibling.nextSibling.setAttribute('class', 'card-delete mouseover');
+    } else if(e.target.tagName === 'SPAN'){
+        e.target.setAttribute('class', 'card-delete mouseover');
+    }
+}
+let onHideDeleteCard = (e)=>{
+    if(e.target.tagName === 'DIV'){
+        e.target.children[1].setAttribute('class', 'card-delete');
+    } else if(e.target.tagName === 'INPUT'){
+        e.target.nextSibling.nextSibling.setAttribute('class', 'card-delete');
+    } else if(e.target.tagName === 'SPAN'){
+        e.target.setAttribute('class', 'card-delete');
+    }
+}
+let cardTitle = document.getElementsByClassName('card-title');
+Array.from(cardTitle).forEach((el)=>{
+    el.addEventListener('mouseover', onShowDeleteCard);
+    el.addEventListener('mouseout', onHideDeleteCard);
+})
+
+let onShowDeleteItem = (e)=>{
+    if(e.target.tagName === 'DIV'){
+        e.target.children[0].children[3].setAttribute('class', 'item-delete mouseover');
+    } else if(e.target.tagName === 'SPAN'){
+        e.target.setAttribute('class', 'item-delete mouseover');
+    } else if(e.target.tagName === 'INPUT'){
+        e.target.nextSibling.nextSibling.setAttribute('class', 'item-delete mouseover');
+    }
+}
+let onHideDeleteItem = (e)=>{
+    if(e.target.tagName === 'DIV'){
+        e.target.children[0].children[3].setAttribute('class', 'item-delete');
+    } else if(e.target.tagName === 'SPAN'){
+        e.target.setAttribute('class', 'item-delete');
+    } else if(e.target.tagName === 'INPUT'){
+        e.target.nextSibling.nextSibling.setAttribute('class', 'item-delete');
+    }
+}
+let item = document.getElementsByClassName('item');
+Array.from(item).forEach((el)=>{
+    el.addEventListener('mouseover', onShowDeleteItem);
+    el.addEventListener('mouseout', onHideDeleteItem);
 })

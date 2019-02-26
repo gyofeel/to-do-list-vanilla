@@ -2,8 +2,10 @@ let initCard = (card)=>{
     let result = card.reduce((acc, el)=>{
         let value = `
         <div class="card" id="${el.card_id}">
-            <div class="card-title"><input class="card-title-text" id="ctc-${el.card_id}" value="${el.card_title}"></div>
-            <div class="card-delete" id="cd-${el.card_id}">이 카드를 삭제</div>
+            <div class="card-title" id="ct-${el.card_id}">
+                <input class="card-title-text" id="ctc-${el.card_id}" value="${el.card_title}">
+                <span class="card-delete" id="cd-${el.card_id}">이 카드를 삭제</span>
+            </div>
             <div class="list">
             <div class="div-list" id="dl-${el.card_id}">
                 ${initList(el.list, el.card_id)}
@@ -29,8 +31,10 @@ let createCardElement = (cardData)=>{
     card.setAttribute('class', 'card');
     card.setAttribute('id', cardData.card_id);
     let element = `
-    <div class="card-title"><input class="card-title-text" id="ctc-${cardData.card_id}" value="${cardData.card_title}"></div>
-    <div class="card-delete" id="cd-${cardData.card_id}">이 카드를 삭제</div>
+    <div class="card-title" id="ct-${cardData.card_id}">
+        <input class="card-title-text" id="ctc-${cardData.card_id}" value="${cardData.card_title}">
+        <span class="card-delete" id="cd-${cardData.card_id}">이 카드를 삭제</span>
+    </div>
     <div class="list">
         <div class="div-list" id="dl-${cardData.card_id}"></div>
         <div class="guide-item"></div>
