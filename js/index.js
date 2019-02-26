@@ -61,7 +61,7 @@ let onUpdateItemComplete = (e)=>{
     const targetCardId = splitTarget[0];
     const targetItemId = splitTarget[1];
     updateItemData(targetCardId, targetItemId, 1);
-    console.log(data.card)
+    document.getElementById(`cn-${targetCardId}`).textContent = data.card[data.card.findIndex((o)=>o.card_id===targetCardId)].complete_num;
 }
 let checkbox = document.getElementsByClassName('checkbox');
 Array.from(checkbox).forEach((el)=>{
