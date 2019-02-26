@@ -26,6 +26,8 @@ let onAddItem = (e)=>{
     let targetIdx = data.card.findIndex((o)=>o.card_id===targetCardId);
     data.card[targetIdx].list.push(newItemData);
     document.getElementById(`tn-${targetCardId}`).textContent=++data.card[targetIdx].total_num;
+    document.getElementById(`ic-${targetCardId}-${newItemData.item_id}`).addEventListener('blur', onUpdateItemContent);
+    document.getElementById(`${targetCardId}-${newItemData.item_id}`).addEventListener('change', onUpdateItemComplete);
 }
 let addItem = document.getElementsByClassName('add-item');
 Array.from(addItem).forEach((el)=>{
@@ -43,12 +45,25 @@ Array.from(cardTitleText).forEach((el)=>{
 })
 
 let onUpdateItemContent = (e)=>{
-    const targetItemId = e.target.id.split('-')[1];
+    const splitTarget = e.target.id.split('-');
+    const targetCardId = splitTarget[1];
+    const targetItemId = splitTarget[2];
     const targetContentValue = e.target.value;
-    console.log(targetContentValue);
-    let targetIdx;
+    updateItemData(targetCardId, targetItemId, targetContentValue, 0);
 }
 let itemContent = document.getElementsByClassName('item-content');
 Array.from(itemContent).forEach((el)=>{
     el.addEventListener('blur', onUpdateItemContent);
+})
+
+let onUpdateItemComplete = (e)=>{
+    const splitTarget = e.target.id.split('-');
+    const targetCardId = splitTarget[0];
+    const targetItemId = splitTarget[1];
+    updateItemData(targetCardId, targetItemId, 1);
+    console.log(data.card)
+}
+let checkbox = document.getElementsByClassName('checkbox');
+Array.from(checkbox).forEach((el)=>{
+    el.addEventListener('change', onUpdateItemComplete);
 })

@@ -40,17 +40,16 @@ let createItemData = ()=>{
     });
 }
 
-let updateItemData = (cardId, itemId, toUpdate, dir)=>{
+let updateItemData = (cardId, itemId, dir, toUpdate=false)=>{
     const targetCardIdx = data.card.findIndex((o)=>o.card_id===cardId)
     const targetItemIdx = data.card[targetCardIdx].list.findIndex((o)=>o.item_id === itemId);
-
     switch(dir){
         case 0 : {
             data.card[targetCardIdx].list[targetItemIdx].item_content = toUpdate;
             break;
         }
         case 1 : {
-            data.card[targetCardIdx].list[targetItemIdx].item_complete = toUpdate;
+            data.card[targetCardIdx].list[targetItemIdx].item_complete = data.card[targetCardIdx].list[targetItemIdx].item_complete?false:true;
             break;
         }
         default:{
@@ -58,5 +57,5 @@ let updateItemData = (cardId, itemId, toUpdate, dir)=>{
         }
     }
 
-    return targetIdx;
+    return targetItemIdx;
 }
