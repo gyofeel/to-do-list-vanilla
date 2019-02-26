@@ -6,7 +6,7 @@ let initCard = (card)=>{
             <div class="card-delete" id="cd-${el.card_id}">이 카드를 삭제</div>
             <div class="list">
             <div class="div-list" id="dl-${el.card_id}">
-                ${initList(el.list)}
+                ${initList(el.list, el.card_id)}
             </div>
                 <div class="guide-item"></div>
                 <div class="add-item" id="ai-${el.card_id}"><span>+ Add Another item</span></div>

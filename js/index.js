@@ -19,13 +19,10 @@ document.getElementById('add-card').addEventListener('click', onAddCard)
 let onAddItem = (e)=>{
     let targetCardId = (e.target.id?e.target.id:e.target.parentElement.id).split('-')[1];
     let newItemData = createItemData();
-    console.log(targetCardId)
     let divList = document.getElementById(`dl-${targetCardId}`);
-    let element = createItemElement(newItemData);
-    console.log(divList);
+    let element = createItemElement(newItemData, targetCardId);
     divList.appendChild(element);
-    document.getElementById(`ic-${newItemData.item_id}`).focus();
-    console.log(targetCardId)
+    document.getElementById(`ic-${targetCardId}-${newItemData.item_id}`).focus();
     let targetIdx = data.card.findIndex((o)=>o.card_id===targetCardId);
     data.card[targetIdx].list.push(newItemData);
     document.getElementById(`tn-${targetCardId}`).textContent=++data.card[targetIdx].total_num;
@@ -36,16 +33,22 @@ Array.from(addItem).forEach((el)=>{
 })
 
 let onUpdateCardTitle = (e)=>{
-    console.log(e.target.id);
-    console.log(e.target.value);
     const targetCardId = e.target.id.split('-')[1];
     const targetTitleValue = e.target.value;
-    let targetIdx = data.card.findIndex((o)=>o.card_id===targetCardId);
-    data.card[targetIdx].card_title = targetTitleValue;
-    console.log(data.card)
+    updateCardData(targetCardId, targetTitleValue);
 }
 let cardTitleText = document.getElementsByClassName('card-title-text');
 Array.from(cardTitleText).forEach((el)=>{
     el.addEventListener('blur', onUpdateCardTitle);
 })
 
+let onUpdateItemContent = (e)=>{
+    const targetItemId = e.target.id.split('-')[1];
+    const targetContentValue = e.target.value;
+    console.log(targetContentValue);
+    let targetIdx;
+}
+let itemContent = document.getElementsByClassName('item-content');
+Array.from(itemContent).forEach((el)=>{
+    el.addEventListener('blur', onUpdateItemContent);
+})

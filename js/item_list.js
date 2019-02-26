@@ -1,12 +1,12 @@
-let initList = (list)=>{
+let initList = (list, cardId)=>{
     let result = list.reduce((acc, el)=>{
         let value = `
         <div class="item">
             <form class="item-form">
-                <input class="checkbox" id="${el.item_id}" type="checkbox" ${el.item_complete?"checked":''}/>
-                <label for="${el.item_id}"></label>
-                <input class="item-content" id="ic-${el.item_id}" type="text" value="${el.item_content}"/>
-                <span class="item-delete" id="id-${el.item_id}">삭제</span>
+                <input class="checkbox" id="${cardId}-${el.item_id}" type="checkbox" ${el.item_complete?"checked":''}/>
+                <label for="${cardId}-${el.item_id}"></label>
+                <input class="item-content" id="ic-${cardId}-${el.item_id}" type="text" value="${el.item_content}"/>
+                <span class="item-delete" id="id-${cardId}-${el.item_id}">삭제</span>
             </form>
         </div>
         `
@@ -15,15 +15,15 @@ let initList = (list)=>{
     return result;
 }
 
-let createItemElement = (itemData)=>{
+let createItemElement = (itemData, cardId)=>{
     let item = document.createElement('div');
     item.setAttribute('class', 'item');
     let element = `
     <form class="item-form">
-        <input class="checkbox" id="${itemData.item_id}" type="checkbox" ${itemData.item_complete?"checked":''}/>
-        <label for="${itemData.item_id}"></label>
-        <input class="item-content" id="ic-${itemData.item_id}" type="text" value="${itemData.item_content}"/>
-        <span class="item-delete" id="id-${itemData.item_id}">삭제</span>
+        <input class="checkbox" id="${cardId}-${itemData.item_id}" type="checkbox" ${itemData.item_complete?"checked":''}/>
+        <label for="${cardId}-${itemData.item_id}"></label>
+        <input class="item-content" id="ic-${cardId}-${itemData.item_id}" type="text" value="${itemData.item_content}"/>
+        <span class="item-delete" id="id-${cardId}-${itemData.item_id}">삭제</span>
     </form>
     `
 
@@ -34,22 +34,23 @@ let createItemElement = (itemData)=>{
 
 let createItemData = ()=>{
     return ({
-        item_id : makeId(),
+        item_id : makeId()+'',
         item_content:"",
         item_complete:false
     });
 }
 
-let updateItemData = (itemId, toUpdate, dir)=>{
-    const targetIdx = data.card.list.findIndex((o)=>o.item_id === itemId);
+let updateItemData = (cardId, itemId, toUpdate, dir)=>{
+    const targetCardIdx = data.card.findIndex((o)=>o.card_id===cardId)
+    const targetItemIdx = data.card[targetCardIdx].list.findIndex((o)=>o.item_id === itemId);
 
     switch(dir){
         case 0 : {
-            data.card.list[targetIdx].item_content = toUpdate;
+            data.card[targetCardIdx].list[targetItemIdx].item_content = toUpdate;
             break;
         }
         case 1 : {
-            data.card.list[targetIdx].item_complete = toUpdate;
+            data.card[targetCardIdx].list[targetItemIdx].item_complete = toUpdate;
             break;
         }
         default:{
