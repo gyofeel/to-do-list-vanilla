@@ -16,7 +16,7 @@ let onAddCard = (e)=>{
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
 let onAddItem = (e)=>{
-    let targetCardId = e.target.id?e.target.id.split('-')[1]:e.target.parentElement.id.split('-')[1];
+    let targetCardId = (e.target.id?e.target.id:e.target.parentElement.id).split('-')[1];
     let newItemData = createItemData();
     console.log(targetCardId)
     let divList = document.getElementById(`dl-${targetCardId}`);
@@ -32,4 +32,18 @@ let onAddItem = (e)=>{
 let addItem = document.getElementsByClassName('add-item');
 Array.from(addItem).forEach((el)=>{
     el.addEventListener('click', onAddItem);
+})
+
+
+let onUpdateCardTitle = (e)=>{
+    console.log(e.target.id);
+    console.log(e.target.value);
+    const targetCardId = e.target.id.split('-')[1];
+    const targetTitleValue = e.target.value;
+    let targetIdx = data.card.findIndex((o)=>{o.card_title===targetCardId});
+    console.log(targetIdx)
+}
+let cardTitleText = document.getElementsByClassName('card-title-text');
+Array.from(cardTitleText).forEach((el)=>{
+    el.addEventListener('blur', onUpdateCardTitle);
 })
