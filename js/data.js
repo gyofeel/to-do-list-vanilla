@@ -59,5 +59,10 @@ let data = {
             complete_num: 1,
             total_num: 2
         }
-    ]
+    ],
+    drag : {
+        mouse_x : 0,
+        mouse_y : 0,
+        init_drag : false
+    }
 }

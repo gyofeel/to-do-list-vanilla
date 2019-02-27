@@ -1,9 +1,17 @@
+let onMouseUp = (e)=>{
+    if(data.drag.init_drag) drop(e);
+}
+let onMouseMove = (e)=>{
+    if(data.drag.init_drag) drag(e);
+}
 let onResizeWrap = ()=>{
     let wrap = document.getElementById('wrap');
     wrap.style.height = window.innerHeight+'px';
 }
 onResizeWrap();
-window.addEventListener('resize', onResizeWrap)
+window.addEventListener('resize', onResizeWrap);
+window.addEventListener('mousemove', onMouseMove);
+window.addEventListener('mouseup', onMouseUp);
 
 let onAddCard = (e)=>{
     let newCardData = createCardData();
@@ -77,7 +85,6 @@ Array.from(checkbox).forEach((el)=>{
     el.addEventListener('change', onUpdateItemComplete);
 })
 
-
 let onShowDeleteCard = (e)=>{
     if(e.target.tagName === 'DIV'){
         e.target.children[1].setAttribute('class', 'card-delete mouseover');
@@ -101,11 +108,15 @@ let onDeleteCard = (e)=>{
     deleteCardData(targetCardId)
     document.getElementById(targetCardId).remove();
 }
+let onChangeCardArgmt = (e)=>{
+    initDrag(e);
+}
 let cardTitle = document.getElementsByClassName('card-title');
 Array.from(cardTitle).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteCard);
     el.addEventListener('mouseout', onHideDeleteCard);
     el.children[1].addEventListener('click', onDeleteCard);
+    el.parentNode.addEventListener('mousedown', onChangeCardArgmt);
 })
 
 let onShowDeleteItem = (e)=>{
