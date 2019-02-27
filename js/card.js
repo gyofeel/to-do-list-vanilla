@@ -58,11 +58,25 @@ let createCardData = ()=>{
     })
 }
 
-let updateCardData = (cardId, cardTitle)=>{
+let updateCardData = (cardId, dir, cardTitle='')=>{
     const targetIdx = data.card.findIndex((o)=> o.card_id === cardId);
 
-    data.card[targetIdx].card_title = cardTitle;
-    
+    switch(dir){
+        case 0:{
+            data.card[targetIdx].card_title = cardTitle;
+            break;
+        }
+        case 1:{
+            data.card[targetIdx].complete_num = data.card[targetIdx].list.reduce((acc, el)=>{
+                if(el.item_complete) return ++acc;
+                return acc;
+            }, 0)
+            break;
+        }
+        default :{
+            break;
+        }
+    }
     return targetIdx;
 }
 

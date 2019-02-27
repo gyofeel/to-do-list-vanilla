@@ -51,10 +51,6 @@ let updateItemData = (cardId, itemId, dir, toUpdate=false)=>{
         }
         case 1 : {
             data.card[targetCardIdx].list[targetItemIdx].item_complete = data.card[targetCardIdx].list[targetItemIdx].item_complete?false:true;
-            data.card[targetCardIdx].complete_num = data.card[targetCardIdx].list.reduce((acc, el)=>{
-                if(el.item_complete) return ++acc;
-                return acc;
-            }, 0)
             break;
         }
         default:{

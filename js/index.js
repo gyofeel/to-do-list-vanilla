@@ -45,7 +45,7 @@ Array.from(addItem).forEach((el)=>{
 let onUpdateCardTitle = (e)=>{
     const targetCardId = e.target.id.split('-')[1];
     const targetTitleValue = e.target.value;
-    updateCardData(targetCardId, targetTitleValue);
+    updateCardData(targetCardId, 0, targetTitleValue);
 }
 let cardTitleText = document.getElementsByClassName('card-title-text');
 Array.from(cardTitleText).forEach((el)=>{
@@ -57,7 +57,7 @@ let onUpdateItemContent = (e)=>{
     const targetCardId = splitTarget[1];
     const targetItemId = splitTarget[2];
     const targetContentValue = e.target.value;
-    updateItemData(targetCardId, targetItemId, targetContentValue, 0);
+    updateItemData(targetCardId, targetItemId, 0, targetContentValue);
 }
 let itemContent = document.getElementsByClassName('item-content');
 Array.from(itemContent).forEach((el)=>{
@@ -69,6 +69,7 @@ let onUpdateItemComplete = (e)=>{
     const targetCardId = splitTarget[0];
     const targetItemId = splitTarget[1];
     updateItemData(targetCardId, targetItemId, 1);
+    updateCardData(targetCardId, 1);
     document.getElementById(`cn-${targetCardId}`).textContent = data.card[data.card.findIndex((o)=>o.card_id===targetCardId)].complete_num;
 }
 let checkbox = document.getElementsByClassName('checkbox');
@@ -130,7 +131,11 @@ let onDeleteItem = (e)=>{
     const targetCardId = target[1];
     const targetItemId = target[2];
     deleteItemData(targetCardId, targetItemId);
+    // updateItemData(targetCardId, targetItemId, 1);
+    updateCardData(targetCardId, 1);
     document.getElementById(`i-${targetCardId}-${targetItemId}`).remove();
+    document.getElementById(`cn-${targetCardId}`).textContent = data.card[data.card.findIndex((o)=>o.card_id===targetCardId)].complete_num;
+    document.getElementById(`tn-${targetCardId}`).textContent=--data.card[data.card.findIndex((o)=>o.card_id === targetCardId)].total_num;
 }
 let item = document.getElementsByClassName('item');
 Array.from(item).forEach((el)=>{
