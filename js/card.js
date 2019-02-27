@@ -65,3 +65,11 @@ let updateCardData = (cardId, cardTitle)=>{
     
     return targetIdx;
 }
+
+let deleteCardData = (cardId)=>{
+    const targetCardIdx = data.card.findIndex((o)=>o.card_id === cardId)
+
+    data.card.splice(targetCardIdx, 1);
+    debugger
+    return targetCardIdx;
+}

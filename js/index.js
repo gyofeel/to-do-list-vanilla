@@ -91,10 +91,16 @@ let onHideDeleteCard = (e)=>{
         e.target.setAttribute('class', 'card-delete');
     }
 }
+let onDeleteCard = (e)=>{
+    const targetCardId = e.target.id.split('-')[1];
+    deleteCardData(targetCardId)
+    document.getElementById(targetCardId).remove();
+}
 let cardTitle = document.getElementsByClassName('card-title');
 Array.from(cardTitle).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteCard);
     el.addEventListener('mouseout', onHideDeleteCard);
+    el.children[1].addEventListener('click', onDeleteCard);
 })
 
 let onShowDeleteItem = (e)=>{
