@@ -121,8 +121,16 @@ let onHideDeleteItem = (e)=>{
         e.target.nextSibling.nextSibling.setAttribute('class', 'item-delete');
     }
 }
+let onDeleteItem = (e)=>{
+    const target = e.target.id.split('-');
+    const targetCardId = target[1];
+    const targetItemId = target[2];
+    deleteItemData(targetCardId, targetItemId);
+    document.getElementById(`i-${targetCardId}-${targetItemId}`).remove();
+}
 let item = document.getElementsByClassName('item');
 Array.from(item).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteItem);
     el.addEventListener('mouseout', onHideDeleteItem);
+    el.children[0].children[3].addEventListener('click', onDeleteItem);
 })

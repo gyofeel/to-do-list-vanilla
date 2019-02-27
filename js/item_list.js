@@ -64,3 +64,11 @@ let updateItemData = (cardId, itemId, dir, toUpdate=false)=>{
 
     return targetItemIdx;
 }
+
+let deleteItemData = (cardId, itemId)=>{
+    const targetCardIdx = data.card.findIndex((o)=>o.card_id===cardId)
+    const targetItemIdx = data.card[targetCardIdx].list.findIndex((o)=>o.item_id === itemId);
+    data.card[targetCardIdx].list.splice(targetItemIdx, 1);
+
+    return targetItemIdx;
+}
