@@ -15,7 +15,7 @@ let onAddCard = (e)=>{
     document.getElementById(`ctc-${newCardData.card_id}`).addEventListener('blur', onUpdateCardTitle);
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseover', onShowDeleteCard);
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseout', onHideDeleteCard);
-    document.getElementById(`ct-${newCardData.card_id}`).addEventListener('click', onDeleteCard);
+    document.getElementById(`cd-${newCardData.card_id}`).addEventListener('click', onDeleteCard);
 
 }
 document.getElementById('add-card').addEventListener('click', onAddCard)
@@ -34,7 +34,7 @@ let onAddItem = (e)=>{
     document.getElementById(`${targetCardId}-${newItemData.item_id}`).addEventListener('change', onUpdateItemComplete);
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseover', onShowDeleteItem);
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseout', onHideDeleteItem);
-    document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('click', onDeleteItem);
+    document.getElementById(`id-${targetCardId}-${newItemData.item_id}`).addEventListener('click', onDeleteItem);
 
 }
 let addItem = document.getElementsByClassName('add-item');
