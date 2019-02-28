@@ -63,6 +63,7 @@ let data = {
     drag : {
         mouse_x : 0,
         mouse_y : 0,
-        init_drag : false
+        init_drag : false,
+        dragged_id : ''
     }
 }

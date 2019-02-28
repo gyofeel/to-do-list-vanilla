@@ -42,7 +42,7 @@
     /* display:none; */
     opacity:0;
     background-color:coral;
-    transition:0.5s;
+    transition:1s;
 }
 .checkbox:checked + label::before{
     opacity:1;

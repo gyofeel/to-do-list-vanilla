@@ -38,7 +38,7 @@
     flex-flow:row nowrap;
 }
 
-.guide-card{
+#guide-card{
     min-width:270px;
     height:80%;
     background-color:yellow;
