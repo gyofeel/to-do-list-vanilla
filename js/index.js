@@ -2,7 +2,7 @@ let onMouseUp = (e)=>{
     if(data.drag.init_drag) drop(e);
 }
 let onMouseMove = (e)=>{
-    if(data.drag.init_drag) drag('guide-card');
+    if(data.drag.init_drag) drag(e, 'guide-card');
 }
 let onResizeWrap = ()=>{
     let wrap = document.getElementById('wrap');
