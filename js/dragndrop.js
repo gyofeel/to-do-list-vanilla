@@ -3,14 +3,14 @@ let returnComputedStyle = (elId ,property)=>{
 }
 
 let initDrag = (e)=>{
-    data.drag.mouse_x = e.pageX;
-    data.drag.mouse_y = e.pageY;
     data.drag.init_drag = true;
     data.drag.dragged_id = e.currentTarget.id;
-    let temp = document.getElementById(e.currentTarget.id).getBoundingClientRect().left;
-    data.drag.dX = e.clientX - temp;
-    data.drag.dY = e.clientY - document.getElementById(e.currentTarget.id).getBoundingClientRect().top;
-    // debugger
+    let draggedLeft = document.getElementById(e.currentTarget.id).getBoundingClientRect().left
+    let draggedTop = document.getElementById(e.currentTarget.id).getBoundingClientRect().top
+    data.drag.drop_x = draggedLeft
+    data.drag.drop_y = draggedTop
+    data.drag.dX = e.clientX - draggedLeft;
+    data.drag.dY = e.clientY - draggedTop;
 }
 
 //drag(pGuideElementId)
@@ -20,11 +20,16 @@ let drag = (e, guideId)=>{
     const dY = data.drag.dY;
     let guideElement = document.getElementById(guideId);
     let draggedElement = document.getElementById(draggedId);
-    data.drag.drop_x = e.pageX;
-    data.drag.drop_y = e.pageY;
-    const pX = e.clientX;
-    const pY = e.clientY;
-
+    let draggedLeft = document.getElementById(draggedId).getBoundingClientRect().left
+    let draggedTop = document.getElementById(draggedId).getBoundingClientRect().top
+    data.drag.drop_x = draggedLeft;
+    data.drag.drop_y = draggedTop;
+    const cX = e.clientX;
+    const cY = e.clientY;
+    // console.log(e.pageX, e.pageY)
+    // console.log(document.getElementById('content').scrollLeft);
+    const draggedPosX = e.pageX + document.getElementById('content').scrollLeft;
+    
     //guide element의 width, height를 dragged element와 동기화
     const cDraggedWidth = returnComputedStyle(draggedId, 'width');
     const cDraggedHeight = returnComputedStyle(draggedId, 'height');
@@ -38,10 +43,8 @@ let drag = (e, guideId)=>{
     draggedElement.setAttribute('class', 'card drag')
     draggedElement.style.width = cDraggedWidth;
     draggedElement.style.height = cDraggedHeight
-    draggedElement.style.left = `${pX-dX}px`;
-    draggedElement.style.top = `${pY-dY}px`;
-    console.log(pX-dX, pY-dY);
-// debugger
+    draggedElement.style.left = `${cX-dX}px`;
+    draggedElement.style.top = `${cY-dY}px`;
 }
 
 let drop = (e)=>{

@@ -70,6 +70,7 @@
     z-index:10;
     box-shadow: 3px 3px 10px 3px rgba(100, 100, 100, .3);
     transform: rotate(3deg);
+    transform-origin: 
 }
 #add-card{
     background-color:black;
