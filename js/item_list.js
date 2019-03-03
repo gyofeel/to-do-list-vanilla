@@ -51,16 +51,20 @@ let updateItemData = (cardId, itemId, dir, toUpdate=false)=>{
         }
         case 1 : {
             data.card[targetCardIdx].list[targetItemIdx].item_complete = data.card[targetCardIdx].list[targetItemIdx].item_complete?false:true;
-            data.card[targetCardIdx].complete_num = data.card[targetCardIdx].list.reduce((acc, el)=>{
-                if(el.item_complete) return ++acc;
-                return acc;
-            }, 0)
             break;
         }
         default:{
             break;
         }
     }
+
+    return targetItemIdx;
+}
+
+let deleteItemData = (cardId, itemId)=>{
+    const targetCardIdx = data.card.findIndex((o)=>o.card_id===cardId)
+    const targetItemIdx = data.card[targetCardIdx].list.findIndex((o)=>o.item_id === itemId);
+    data.card[targetCardIdx].list.splice(targetItemIdx, 1);
 
     return targetItemIdx;
 }
