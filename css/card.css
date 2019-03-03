@@ -38,7 +38,7 @@
     flex-flow:row nowrap;
 }
 
-.guide-card{
+#guide-card{
     min-width:270px;
     height:80%;
     background-color:yellow;
@@ -60,9 +60,17 @@
 .card{
     overflow-y:scroll;
     overflow-x:hidden;
+    z-index:0;
 }
 .card::-webkit-scrollbar{
     display: none;
+}
+.card.drag{
+    position:fixed;
+    z-index:10;
+    box-shadow: 3px 3px 10px 3px rgba(100, 100, 100, .3);
+    transform: rotate(3deg);
+    transform-origin: 
 }
 #add-card{
     background-color:black;

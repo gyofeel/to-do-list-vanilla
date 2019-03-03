@@ -2,7 +2,7 @@ let onMouseUp = (e)=>{
     if(data.drag.init_drag) drop(e);
 }
 let onMouseMove = (e)=>{
-    if(data.drag.init_drag) drag(e);
+    if(data.drag.init_drag) drag(e, 'guide-card');
 }
 let onResizeWrap = ()=>{
     let wrap = document.getElementById('wrap');
@@ -24,7 +24,7 @@ let onAddCard = (e)=>{
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseover', onShowDeleteCard);
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseout', onHideDeleteCard);
     document.getElementById(`cd-${newCardData.card_id}`).addEventListener('click', onDeleteCard);
-
+    document.getElementById(`${newCardData.card_id}`).addEventListener('mousedown', onChangeCardArgmt)
 }
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
@@ -43,7 +43,6 @@ let onAddItem = (e)=>{
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseover', onShowDeleteItem);
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseout', onHideDeleteItem);
     document.getElementById(`id-${targetCardId}-${newItemData.item_id}`).addEventListener('click', onDeleteItem);
-
 }
 let addItem = document.getElementsByClassName('add-item');
 Array.from(addItem).forEach((el)=>{
@@ -86,56 +85,29 @@ Array.from(checkbox).forEach((el)=>{
 })
 
 let onShowDeleteCard = (e)=>{
-    if(e.target.tagName === 'DIV'){
-        e.target.children[1].setAttribute('class', 'card-delete mouseover');
-    } else if(e.target.tagName === 'INPUT'){
-        e.target.nextSibling.nextSibling.setAttribute('class', 'card-delete mouseover');
-    } else if(e.target.tagName === 'SPAN'){
-        e.target.setAttribute('class', 'card-delete mouseover');
-    }
+    e.currentTarget.children[1].setAttribute('class', 'card-delete mouseover');
 }
 let onHideDeleteCard = (e)=>{
-    if(e.target.tagName === 'DIV'){
-        e.target.children[1].setAttribute('class', 'card-delete');
-    } else if(e.target.tagName === 'INPUT'){
-        e.target.nextSibling.nextSibling.setAttribute('class', 'card-delete');
-    } else if(e.target.tagName === 'SPAN'){
-        e.target.setAttribute('class', 'card-delete');
-    }
+    e.currentTarget.children[1].setAttribute('class', 'card-delete');
 }
 let onDeleteCard = (e)=>{
     const targetCardId = e.target.id.split('-')[1];
     deleteCardData(targetCardId)
     document.getElementById(targetCardId).remove();
 }
-let onChangeCardArgmt = (e)=>{
-    initDrag(e);
-}
+
 let cardTitle = document.getElementsByClassName('card-title');
 Array.from(cardTitle).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteCard);
     el.addEventListener('mouseout', onHideDeleteCard);
     el.children[1].addEventListener('click', onDeleteCard);
-    el.parentNode.addEventListener('mousedown', onChangeCardArgmt);
 })
 
 let onShowDeleteItem = (e)=>{
-    if(e.target.tagName === 'DIV'){
-        e.target.children[0].children[3].setAttribute('class', 'item-delete mouseover');
-    } else if(e.target.tagName === 'SPAN'){
-        e.target.setAttribute('class', 'item-delete mouseover');
-    } else if(e.target.tagName === 'INPUT'){
-        e.target.nextSibling.nextSibling.setAttribute('class', 'item-delete mouseover');
-    }
+    e.currentTarget.children[0].children[3].setAttribute('class', 'item-delete mouseover');
 }
 let onHideDeleteItem = (e)=>{
-    if(e.target.tagName === 'DIV'){
-        e.target.children[0].children[3].setAttribute('class', 'item-delete');
-    } else if(e.target.tagName === 'SPAN'){
-        e.target.setAttribute('class', 'item-delete');
-    } else if(e.target.tagName === 'INPUT'){
-        e.target.nextSibling.nextSibling.setAttribute('class', 'item-delete');
-    }
+        e.currentTarget.children[0].children[3].setAttribute('class', 'item-delete');
 }
 let onDeleteItem = (e)=>{
     const target = e.target.id.split('-');
@@ -153,4 +125,12 @@ Array.from(item).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteItem);
     el.addEventListener('mouseout', onHideDeleteItem);
     el.children[0].children[3].addEventListener('click', onDeleteItem);
+})
+
+let onChangeCardArgmt = (e)=>{
+    initDrag(e);
+}
+let card = document.getElementsByClassName('card');
+Array.from(card).forEach((el)=>{
+    el.addEventListener('mousedown', onChangeCardArgmt);
 })

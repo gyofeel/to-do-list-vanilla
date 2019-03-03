@@ -10,7 +10,7 @@ let initCard = (card)=>{
             <div class="div-list" id="dl-${el.card_id}">
                 ${initList(el.list, el.card_id)}
             </div>
-                <div class="guide-item"></div>
+                <div class="guide-item" id="gi-${el.card_id}"></div>
                 <div class="add-item" id="ai-${el.card_id}"><span>+ Add Another item</span></div>
             </div>
             <div class="number-item" id=""><span class="complete-num" id="cn-${el.card_id}">${el.complete_num}</span> / <span class="total-num" id="tn-${el.card_id}">${el.total_num}</span></div>
@@ -19,13 +19,12 @@ let initCard = (card)=>{
         return acc+value;
     }, '')
     result = `<div id="div-card">${result}</div>
-    <div class="guide-card"></div>
+    <div id="guide-card"></div>
     <div id="add-card"><span>+ Add Anoter Card</span></div>
     `
 
     return result;
 }
-
 let createCardElement = (cardData)=>{
     let card = document.createElement("div");
     card.setAttribute('class', 'card');
