@@ -45,3 +45,10 @@ border-spacing:0;
 legend{
   color:white;
 }
+
+body{
+  user-select:none;
+}
+input{
+  user-select: text;
+}

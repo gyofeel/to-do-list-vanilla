@@ -41,7 +41,8 @@
 #guide-card{
     min-width:270px;
     height:80%;
-    background-color:yellow;
+    background-color:black;
+    opacity:.1;
     margin-left:30px;
     border-radius: 5px;
     display:none;
@@ -70,7 +71,6 @@
     z-index:10;
     box-shadow: 3px 3px 10px 3px rgba(100, 100, 100, .3);
     transform: rotate(3deg);
-    transform-origin: 
 }
 #add-card{
     background-color:black;

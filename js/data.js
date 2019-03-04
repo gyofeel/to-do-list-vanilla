@@ -61,10 +61,12 @@ let data = {
         }
     ],
     drag : {
-        mouse_x : 0,
-        mouse_y : 0,
         init_drag : false,
+        move_drag : false,
         dragged_id : '',
+        guide_id : '',
+        container_id : '',
+        position_idx : -1,
         dX : 0,
         dY : 0
     }
