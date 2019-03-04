@@ -2,7 +2,7 @@ let onMouseUp = (e)=>{
     if(data.drag.init_drag) drop(e);
 }
 let onMouseMove = (e)=>{
-    if(data.drag.init_drag) drag(e, 'guide-card');
+    if(data.drag.init_drag) drag(e);
 }
 let onResizeWrap = ()=>{
     let wrap = document.getElementById('wrap');
@@ -24,7 +24,7 @@ let onAddCard = (e)=>{
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseover', onShowDeleteCard);
     document.getElementById(`ct-${newCardData.card_id}`).addEventListener('mouseout', onHideDeleteCard);
     document.getElementById(`cd-${newCardData.card_id}`).addEventListener('click', onDeleteCard);
-    document.getElementById(`${newCardData.card_id}`).addEventListener('mousedown', onChangeCardArgmt)
+    document.getElementById(`${newCardData.card_id}`).addEventListener('mousedown', onChangeCardArgmt);
 }
 document.getElementById('add-card').addEventListener('click', onAddCard)
 
@@ -107,7 +107,7 @@ let onShowDeleteItem = (e)=>{
     e.currentTarget.children[0].children[3].setAttribute('class', 'item-delete mouseover');
 }
 let onHideDeleteItem = (e)=>{
-        e.currentTarget.children[0].children[3].setAttribute('class', 'item-delete');
+    e.currentTarget.children[0].children[3].setAttribute('class', 'item-delete');
 }
 let onDeleteItem = (e)=>{
     const target = e.target.id.split('-');
@@ -128,7 +128,7 @@ Array.from(item).forEach((el)=>{
 })
 
 let onChangeCardArgmt = (e)=>{
-    initDrag(e);
+    initDrag(e, 'guide-card', 'div-card');
 }
 let card = document.getElementsByClassName('card');
 Array.from(card).forEach((el)=>{
