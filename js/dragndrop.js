@@ -78,6 +78,7 @@ let decideGuide = (mX, mY)=>{//예외처리 필요! / 분기 필요!
 }
 //drag(pGuideElementId)
 let drag = (e)=>{
+    data.drag.move_drag = true;
     const draggedId = data.drag.dragged_id;
     const dX = data.drag.dX;
     const dY = data.drag.dY;
@@ -98,8 +99,12 @@ let drag = (e)=>{
 }
 
 let drop = (e)=>{
-    data.drag.init_drag = false;
+    data.drag.move_drag = false;
     const guideElement = document.getElementById(data.drag.guide_id);
     const draggedElement = document.getElementById(data.drag.dragged_id);
-    guideElement.insertAdjacentElement('beforebegin', )
+    guideElement.insertAdjacentElement('beforebegin', draggedElement);
+    draggedElement.setAttribute('class', 'card');
+    draggedElement.style.left = '0px';
+    draggedElement.style.top = '0px';
+    guideElement.style.display = 'none';
 }

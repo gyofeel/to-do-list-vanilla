@@ -41,7 +41,8 @@
 #guide-card{
     min-width:270px;
     height:80%;
-    background-color:yellow;
+    background-color:black;
+    opacity:.1;
     margin-left:30px;
     border-radius: 5px;
     display:none;
