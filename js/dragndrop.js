@@ -47,34 +47,20 @@ let decideGuide = (mX, mY)=>{//예외처리 필요! / 분기 필요!
     const container = document.getElementById(data.drag.container_id);
     const guide = document.getElementById(data.drag.guide_id);
     const conChildNum = container.childElementCount - 1;
-    data.drag.position_idx = returnXPosIdx(container.getBoundingClientRect().width, conChildNum, mX);
+    const positionIdx = returnXPosIdx(container.getBoundingClientRect().width, conChildNum, mX);
 
-    if(data.drag.container_member[data.drag.position_idx] !== data.drag.guide_id){
-        // debugger
+    if(data.drag.container_member[positionIdx] !== data.drag.guide_id){
         const idx = data.drag.container_member.findIndex((o)=>o === data.drag.guide_id);
-        console.log(data.drag.position_idx, idx);
-        if(data.drag.position_idx>idx){
-            document.getElementById(data.drag.container_member[data.drag.position_idx]).insertAdjacentElement('afterend', guide);
+        if(positionIdx>idx){
+            document.getElementById(data.drag.container_member[positionIdx]).insertAdjacentElement('afterend', guide);
         } else{
-            document.getElementById(data.drag.container_member[data.drag.position_idx]).insertAdjacentElement('beforebegin', guide);
+            document.getElementById(data.drag.container_member[positionIdx]).insertAdjacentElement('beforebegin', guide);
         }        
 
         let temp = data.drag.container_member[idx];//swap
-        data.drag.container_member[idx] = data.drag.container_member[data.drag.position_idx];
-        data.drag.container_member[data.drag.position_idx] = temp;
+        data.drag.container_member[idx] = data.drag.container_member[positionIdx];
+        data.drag.container_member[positionIdx] = temp;
     }
-    console.log(data.drag.container_member)
-    console.log(data.drag.position_idx)
-
-    // if(data.drag.position_idx !== 0){
-    //     data.drag.container_member[data.drag.position_idx].insertAdjacentElement('beforebegin', guide);
-    //     // console.log(container.children[data.drag.position_idx])
-    // }else if(data.drag.position_idx === data.drag.container_member.length-1){
-    //     container.insertAdjacentElement('beforeend', guide);
-    // }else {
-    //     container.insertAdjacentElement('afterbegin', guide);
-    // }
-
 }
 //drag(pGuideElementId)
 let drag = (e)=>{

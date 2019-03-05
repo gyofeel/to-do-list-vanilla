@@ -66,7 +66,6 @@ let data = {
         dragged_id : '',
         guide_id : '',
         container_id : '',
-        position_idx : -1,
         dX : 0,
         dY : 0
     }
