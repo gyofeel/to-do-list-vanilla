@@ -1,9 +1,9 @@
 let init = ()=>{
+    let inform = document.getElementById('inform');
+    inform.innerHTML = initInform(data.username);
+
     let content = document.getElementById('content');
     content.innerHTML = initCard(data.card);
-
-    let inform = document.getElementById('inform');
-    inform.innerHTML = initInform(data.username, data.date);
 }
 init();
 

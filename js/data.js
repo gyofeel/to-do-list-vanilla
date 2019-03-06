@@ -19,7 +19,7 @@ data {
 */
 let data = {
     username: "Gyopil",
-    date: "2019. 02. 22",
+    date: "",
     card: [
         {
             card_id : "xcznjda",
