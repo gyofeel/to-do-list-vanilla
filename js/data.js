@@ -9,12 +9,24 @@ data {
             list:[
                 {
                     list_content:String,
-                    list_complete:boolean
+                    list_complete:Boolean
                 },{},{}
             ],
             complete_num: number,
             total_num: number
-        },{},{}, ... ]
+        },{},{}, ... ],
+    drag : {
+        init_drag : Boolean,
+        move_drag : Boolean,
+        //arrange_style = HORIZONTAL | VERTICAL | GRID 
+        arrange_style : String,
+        global_container_id : String,
+        dragged_id : String,
+        guide_id : String,
+        container_id : String,
+        dX : Number,
+        dY : Number
+    }
 }
 */
 let data = {
