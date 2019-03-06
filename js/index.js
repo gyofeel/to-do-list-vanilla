@@ -46,6 +46,7 @@ let onAddItem = (e)=>{
     document.getElementById(`${targetCardId}-${newItemData.item_id}`).addEventListener('change', onUpdateItemComplete);
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseover', onShowDeleteItem);
     document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mouseout', onHideDeleteItem);
+    document.getElementById(`i-${targetCardId}-${newItemData.item_id}`).addEventListener('mousedown', onChangeItemArgmt);
     document.getElementById(`id-${targetCardId}-${newItemData.item_id}`).addEventListener('mousedown', onDeleteItem);
 }
 let addItem = document.getElementsByClassName('add-item');
@@ -133,17 +134,22 @@ let onDeleteItem = (e)=>{
     document.getElementById(`cn-${targetCardId}`).textContent = data.card[data.card.findIndex((o)=>o.card_id===targetCardId)].complete_num;
     document.getElementById(`tn-${targetCardId}`).textContent=--data.card[data.card.findIndex((o)=>o.card_id === targetCardId)].total_num;
 }
+let onChangeItemArgmt = (e)=>{
+    e.stopPropagation();
+    const targetCardId = e.currentTarget.id.split('-')[1]
+    initDrag(e, `gi-${targetCardId}`, e.currentTarget.parentElement.id, e.currentTarget.parentElement.id, 'VERTICAL')
+}
 let item = document.getElementsByClassName('item');
 Array.from(item).forEach((el)=>{
     el.addEventListener('mouseover', onShowDeleteItem);
     el.addEventListener('mouseout', onHideDeleteItem);
+    el.addEventListener('mousedown', onChangeItemArgmt);
     el.children[0].children[3].addEventListener('mousedown', onDeleteItem);
 })
 
 let onChangeCardArgmt = (e)=>{
     e.stopPropagation();
-    console.log(data.card)
-    initDrag(e, 'guide-card', 'div-card');
+    initDrag(e, 'guide-card', 'div-card', 'content', 'HORIZONTAL');
 }
 let card = document.getElementsByClassName('card');
 Array.from(card).forEach((el)=>{

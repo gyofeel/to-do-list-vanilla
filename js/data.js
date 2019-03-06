@@ -63,10 +63,12 @@ let data = {
     drag : {
         init_drag : false,
         move_drag : false,
+        //arrange_style = HORIZONTAL | VERTICAL | GRID 
+        arrange_style : '',
+        global_container_id : '',
         dragged_id : '',
         guide_id : '',
         container_id : '',
-        position_idx : -1,
         dX : 0,
         dY : 0
     }
