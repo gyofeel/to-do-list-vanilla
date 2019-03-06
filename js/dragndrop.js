@@ -1,3 +1,7 @@
+//returns value of style property of element
+//parameter
+//elId : id of element / String
+//property : style property / String
 let returnComputedStyle = (elId ,property)=>{
     return window.getComputedStyle(document.getElementById(elId))[property];
 }
@@ -17,6 +21,7 @@ let initDrag = (e, guideId, containerDivId,  globalContainerId, arrangeStyle)=>{
         }
     }catch(e){
         console.log(e)
+        return;
     }
     data.drag.global_container_id = globalContainerId;
     data.drag.init_drag = true;
@@ -29,7 +34,6 @@ let initDrag = (e, guideId, containerDivId,  globalContainerId, arrangeStyle)=>{
     const draggedElement = document.getElementById(data.drag.dragged_id);
     data.drag.dX = e.clientX - draggedLeft;
     data.drag.dY = e.clientY - draggedTop;
-    //guide element의 width, height를 dragged element와 동기화
     const cDraggedWidth = returnComputedStyle(data.drag.dragged_id, 'width');
     const cDraggedHeight = returnComputedStyle(data.drag.dragged_id, 'height');
     guide.style.width = cDraggedWidth;
@@ -37,7 +41,7 @@ let initDrag = (e, guideId, containerDivId,  globalContainerId, arrangeStyle)=>{
     draggedElement.style.width = cDraggedWidth;
     draggedElement.style.height = cDraggedHeight;
 }
-
+//returns position idx of dragged element when VERTICAL
 let returnYPosIdx = (conChNum, mY)=>{
     let containerElement = document.getElementById(data.drag.container_id);
     let globalConElement = document.getElementById(data.drag.global_container_id);
@@ -54,6 +58,7 @@ let returnYPosIdx = (conChNum, mY)=>{
     }
     return temp;
 }
+//returns position idx of dragged element when HORIZONTAL
 let returnXPosIdx = (conChNum, mX)=>{
     let containerElement = document.getElementById(data.drag.container_id);
     let globalConElement = document.getElementById(data.drag.global_container_id);
@@ -70,7 +75,7 @@ let returnXPosIdx = (conChNum, mX)=>{
     }
     return temp;
 }
-let decideGuidePosition = (mX, mY)=>{//예외처리 필요! / 분기 필요!
+let decideGuidePosition = (mX, mY)=>{
     const container = document.getElementById(data.drag.container_id);
     const guide = document.getElementById(data.drag.guide_id);
     const containerMem = data.drag.container_member;
@@ -85,10 +90,10 @@ let decideGuidePosition = (mX, mY)=>{//예외처리 필요! / 분기 필요!
                     document.getElementById(containerMem[positionIdx]).insertAdjacentElement('afterend', guide);
                 } else{
                     document.getElementById(containerMem[positionIdx]).insertAdjacentElement('beforebegin', guide);
-                }        
+                }
                 let temp = containerMem[idx];//swap
                 containerMem[idx] = containerMem[positionIdx];
-                containerMem[positionIdx] = temp;
+                containerMem[positionIdx] = temp;        
             }
             break;
         }
@@ -100,10 +105,10 @@ let decideGuidePosition = (mX, mY)=>{//예외처리 필요! / 분기 필요!
                     document.getElementById(containerMem[positionIdx]).insertAdjacentElement('afterend', guide);
                 } else{
                     document.getElementById(containerMem[positionIdx]).insertAdjacentElement('beforebegin', guide);
-                }        
+                }
                 let temp = containerMem[idx];//swap
                 containerMem[idx] = containerMem[positionIdx];
-                containerMem[positionIdx] = temp;
+                containerMem[positionIdx] = temp;        
             }
             break;
         }
@@ -121,11 +126,10 @@ let decideGuidePosition = (mX, mY)=>{//예외처리 필요! / 분기 필요!
 //drag(pGuideElementId)
 let drag = (e)=>{
     data.drag.move_drag = true;
-    const draggedId = data.drag.dragged_id;
     const dX = data.drag.dX;
     const dY = data.drag.dY;
     let guideElement = document.getElementById(data.drag.guide_id);
-    let draggedElement = document.getElementById(draggedId);
+    let draggedElement = document.getElementById(data.drag.dragged_id);
     const mouseX = e.pageX + document.getElementById(data.drag.global_container_id).scrollLeft;
     const mouseY = e.pageY + document.getElementById(data.drag.global_container_id).scrollTop;
     const cX = e.clientX;
@@ -136,7 +140,7 @@ let drag = (e)=>{
     draggedElement.insertAdjacentElement('afterend', guideElement);
     draggedElement.style.left = `${cX-dX}px`;
     draggedElement.style.top = `${cY-dY}px`;
-    data.drag.container_member = returnContainerMem(draggedId, data.drag.container_id);
+    data.drag.container_member = returnContainerMem(data.drag.dragged_id, data.drag.container_id);
     data.drag.container_member = decideGuidePosition(mouseX, mouseY);
 }
 
