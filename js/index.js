@@ -17,7 +17,7 @@ window.addEventListener('mouseup', onMouseUp);
 let onAddCard = (e)=>{
     let newCardData = createCardData();
     let divCard = document.getElementById('div-card');
-    divCard.appendChild(createCardElement(newCardData))
+    divCard.appendChild(createCardElement(newCardData));
     document.getElementById(`ctc-${newCardData.card_id}`).focus();
     data.card.push(newCardData);
     document.getElementById(`ai-${newCardData.card_id}`).addEventListener('mousedown', onAddItem);
