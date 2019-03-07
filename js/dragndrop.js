@@ -20,7 +20,7 @@ let initDrag = (e, guideId, containerDivId,  globalContainerId, arrangeStyle)=>{
             throw (new Error('Arrange Style Error!'));
         }
     }catch(e){
-        console.log(e)
+        console.error(e)
         return;
     }
     data.drag.global_container_id = globalContainerId;
