@@ -2,5 +2,5 @@ To Do List with Vanilla JS
 ===========================
 ### Drag & Drop UI
 
-comming soon ...
+[Demo](https://gyofeel.github.io/todolistvanilla/)
 
